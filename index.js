@@ -38,7 +38,7 @@ client.on("messageCreate", message => {
          message.delete();
          var embed = new Discord.MessageEmbed()
              .setTitle ("Hai detto una bestemmia")
-             .setDescription ("Hai detto una bestemmia, ora rinvierò il messagio correto. Attento" + testo)
+             .setDescription ("Hai detto una bestemmia, ora rinvierò il messagio correto. Attento   " + testo)
 
             message.channel.send ({ embeds: [embed] })
      }
