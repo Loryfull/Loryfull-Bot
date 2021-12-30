@@ -21,4 +21,8 @@ client.on("ready", () => {
     if (message.content == "l/youtube") {
          message.channel.send ("Iscrivetevi al canale di Nico che porta contenuti su questo server https://www.youtube.com/channel/UCXc_L2UunACJSY5PqdAbWGg")
      }
+
+     if (message.content == "porco dio", "dio cane") {
+         message.channel.delete 
+     }
  })
