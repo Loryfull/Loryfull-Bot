@@ -3,7 +3,7 @@
      {intents:["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES"] }
  )
 
- client.login("OTI0OTMzODQxNDM1NjIzNDI0.YclxxA.qU0t0MAdqWO9Prc-NQM73x8oPvw")
+ client.login(process.env.token)
 
 client.on("ready", () => {
       console.log("Bot Onine")
