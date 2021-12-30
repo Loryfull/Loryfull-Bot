@@ -21,8 +21,16 @@ client.on("ready", () => {
     if (message.content == "l/youtube") {
          message.channel.send ("Iscrivetevi al canale di Nico che porta contenuti su questo server https://www.youtube.com/channel/UCXc_L2UunACJSY5PqdAbWGg")
      }
+     var bestemmie =["porco dio", "dio cane", "porca madonna"]
+     var trovata = false
 
-     if (message.content == "porco dio", "dio cane") {
-         message.channel.delete 
+     bestemmie.forEach(parola =>  {
+         if (message.content.includes (parola)) {
+             trovata = true
+         }
+     })
+
+     if (trovata) {
+         message.delete()
      }
  })
