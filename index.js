@@ -23,6 +23,7 @@ client.on("ready", () => {
      }
     })
 client.on("messageCreate", message => {
+    if(message.member.roles.cache.has(885834646921826334))
      var bestemmie =["porco dio", "dio cane", "porca madonna", "Porco dio", "Dio cane", "Porca madonnna"]
      var trovata = false
      var testo = message.content;
