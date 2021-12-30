@@ -21,16 +21,25 @@ client.on("ready", () => {
     if (message.content == "l/youtube") {
          message.channel.send ("Iscrivetevi al canale di Nico che porta contenuti su questo server https://www.youtube.com/channel/UCXc_L2UunACJSY5PqdAbWGg")
      }
-     var bestemmie =["porco dio", "dio cane", "porca madonna"]
+    })
+client.on("messageCreate", message => {
+     var bestemmie =["porco dio", "dio cane", "porca madonna", "Porco dio", "Dio cane", "Porca madonnna"]
      var trovata = false
+     var testo = message.content;
 
      bestemmie.forEach(parola =>  {
          if (message.content.includes (parola)) {
              trovata = true
+             testo = testo.replace(parola, "****")
          }
      })
 
      if (trovata) {
-         message.delete()
+         message.delete();
+         var embed = new Discord.MessageEmbed()
+             .setTitle ("Hai detto una bestemmia")
+             .setDescription ("Hai detto una bestemmia, ora rinvierò il messagio correto. Attento" + testo)
+
+            message.channel.send ({ embeds: [embed] })
      }
- })
+})
