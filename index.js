@@ -49,7 +49,7 @@ client.on("message", (message) => {
 
         var server = message.member.guild;
 
-        var botCount =  server.member.cache.filter(member => member.user.bot).size;
+        var botCount =  server.members.cache.filter(member => member.user.bot).size;
         var utentiCount = server.memberCount - botCount;
 
         var categoryCuont = server.channels.cache.filter(c => c.type == "category").size;
@@ -69,7 +69,7 @@ client.on("message", (message) => {
             .addField ("Server Created", server.createdAt.toDateString(), true)
             .addField ("Boost Level", "Level " + server.premiumTier + "(Boost: " + server.premiumSubscriptionCount + ")", true)  
             
-        message.channel.send (embed) 
+        message.channel.send ({ embeds: [embed] })
             
     }     
 })
