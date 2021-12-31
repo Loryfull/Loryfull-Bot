@@ -47,8 +47,6 @@ client.on("messageCreate", message => {
 client.on("message", (message) => {
     if(message.content == "l/ServerInfo"){
 
-        var server = message.member.guild;
-
         var botCount =  server.members.cache.filter(member => member.user.bot).size;
         var utentiCount = server.memberCount - botCount;
 
@@ -73,3 +71,6 @@ client.on("message", (message) => {
             
      }     
  })
+
+
+ 
