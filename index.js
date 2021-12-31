@@ -69,7 +69,7 @@ client.on("message", (message) => {
             .addField ("Server Created", server.createdAt.toDateString(), true)
             .addField ("Boost Level", "Level " + server.premiumTier + "(Boost: " + server.premiumSubscriptionCount + ")", true)  
             
-        message.channel.send ({ embeds: [embed] }) 
+        message.channel.send (embed) 
             
     }     
 })
