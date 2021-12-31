@@ -44,3 +44,30 @@ client.on("messageCreate", message => {
             message.channel.send ({ embeds: [embed] })
      }
 })
+client.on("message", (message) => {
+    if(message.content == "l/serverinfo"){
+        var server = message.member.guild;
+
+        var botCount =  server.member.cache.filter(member => member.user.bot).size;
+        var utentiCount = server.memberCount - botCount;
+
+        var categoryCuont = server.channels.cache.filter(c => c.type == "category").size;
+        var textCuont = server.channels.cache.filter(c => c.type == "text").size;
+        var voiceCuont = server.channels.cache.filter(c => c.type == "voice").size;
+
+        var embed = new Discord.MessageEmbed()
+            .setTitle (server.name)
+            .setDescription ("Le informazioni essenziali su questo server")
+            .setThumbnail (server.iconURL())
+            .addField ("Owner", server.owner.user.username, true)
+            .addField ("Server ID", server.id, true)
+            .addField ("Server Region", server.region, true)
+            .addField ("Members", "Total: " + server.memberCount + " -User: " + utentiCount + " -Bot: " + botCount, true)
+            .addField ("Channels", "category: " + categoryCuont + " -text: " + textCuont + " -voice: " + voiceCuont, true)
+            .addField ("Server Created", server.createdAt.toDateString(), true)
+            .addField ("Boost Level", "Level " + server.premiumTier + "(Boost: " + server.premiumSubscriptionCount + ")", true)  
+            
+    message.channel.send({ embeds: [embed] }) 
+            
+    }     
+})
