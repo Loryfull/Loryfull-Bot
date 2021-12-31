@@ -58,18 +58,18 @@ client.on("message", (message) => {
 
         var embed = new Discord.MessageEmbed()
 
-            .setTitle (server.name)
-            .setDescription ("Le informazioni essenziali su questo server")
-            .setThumbnail (server.iconURL())
-            .addField ("Owner", server.owner.user.username, true)
-            .addField ("Server ID", server.id, true)
-            .addField ("Server Region", server.region, true)
-            .addField ("Members", "Total: " + server.memberCount + " -User: " + utentiCount + " -Bot: " + botCount, true)
-            .addField ("Channels", "category: " + categoryCuont + " -text: " + textCuont + " -voice: " + voiceCuont, true)
-            .addField ("Server Created", server.createdAt.toDateString(), true)
-            .addField ("Boost Level", "Level " + server.premiumTier + "(Boost: " + server.premiumSubscriptionCount + ")", true)  
+             .setTitle (server.name)
+             .setDescription ("Le informazioni essenziali su questo server")
+             .setThumbnail (server.iconURL())
+             .addField ("Owner", server.owner.user.username, true)
+             .addField ("Server ID", server.id, true)
+             .addField ("Server Region", server.region, true)
+             .addField ("Members", "Total: " + server.memberCount + " -User: " + utentiCount + " -Bot: " + botCount, true)
+             .addField ("Channels", "category: " + categoryCuont + " -text: " + textCuont + " -voice: " + voiceCuont, true)
+             .addField ("Server Created", server.createdAt.toDateString(), true)
+             .addField ("Boost Level", "Level " + server.premiumTier + "(Boost: " + server.premiumSubscriptionCount + ")", true)  
             
-        message.channel.send ({ embeds: [embed] })
+         message.channel.send ({ embeds: [embed] })
             
-    }     
-})
+     }     
+ })
