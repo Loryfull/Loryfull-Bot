@@ -45,7 +45,7 @@ client.on("messageCreate", message => {
      }
 })
 client.on("message", (message) => {
-    if(message.content == "l/serverinfo"){
+    if(message.content == "l/ServerInfo"){
 
         var server = message.member.guild;
 
