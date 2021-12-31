@@ -46,6 +46,7 @@ client.on("messageCreate", message => {
 })
 client.on("message", (message) => {
     if(message.content == "l/serverinfo"){
+
         var server = message.member.guild;
 
         var botCount =  server.member.cache.filter(member => member.user.bot).size;
@@ -56,6 +57,7 @@ client.on("message", (message) => {
         var voiceCuont = server.channels.cache.filter(c => c.type == "voice").size;
 
         var embed = new Discord.MessageEmbed()
+
             .setTitle (server.name)
             .setDescription ("Le informazioni essenziali su questo server")
             .setThumbnail (server.iconURL())
@@ -67,7 +69,7 @@ client.on("message", (message) => {
             .addField ("Server Created", server.createdAt.toDateString(), true)
             .addField ("Boost Level", "Level " + server.premiumTier + "(Boost: " + server.premiumSubscriptionCount + ")", true)  
             
-    message.channel.send({ embeds: [embed] }) 
+        message.channel.send ({ embeds: [embed] }) 
             
     }     
 })
