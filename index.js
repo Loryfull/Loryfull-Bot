@@ -44,7 +44,7 @@ client.on("messageCreate", message => {
             message.channel.send ({ embeds: [embed] })
      }
 })
-client.on("message", message => {
+client.on("messageCreate", message => {
     if (message.content == "!serverinfo") {
         var server = message.member.guild;
         var botCount = server.members.cache.filter(member => member.user.bot).size;
