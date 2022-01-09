@@ -22,7 +22,7 @@ client.on("ready", () => {
          message.channel.send ("Iscrivetevi al canale di Nico che porta contenuti su questo server https://www.youtube.com/channel/UCXc_L2UunACJSY5PqdAbWGg")
      }
     })
-client.on("messageCreate", message => {
+client.on("message", message => {
     if(message.member.roles.cache.has(885834646921826334)) return
      var bestemmie =["porco dio", "dio cane", "porca madonna", "Porco dio", "Dio cane", "Porca madonnna"]
      var trovata = false
