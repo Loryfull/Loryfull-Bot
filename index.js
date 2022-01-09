@@ -22,7 +22,8 @@ client.on("ready", () => {
          message.channel.send ("Iscrivetevi al canale di Nico che porta contenuti su questo server https://www.youtube.com/channel/UCXc_L2UunACJSY5PqdAbWGg")
      }
     })
-client.on("message", message => {
+
+client.on("messageCreate", message => {
     if(message.member.roles.cache.has(885834646921826334)) return
      var bestemmie =["porco dio", "dio cane", "porca madonna", "Porco dio", "Dio cane", "Porca madonnna"]
      var trovata = false
@@ -42,27 +43,27 @@ client.on("message", message => {
              .setDescription ("Hai detto una bestemmia, ora rinvierò il messagio correto. Attento   " + testo)
 
             message.channel.send ({ embeds: [embed] })
-    
-            if (message.content == "!serverinfo") {
-                var server = message.member.guild;
-                var botCount = server.members.cache.filter(member => member.user.bot).size;
-                var utentiCount = server.memberCount - botCount;
-                var categoryCount = server.channels.cache.filter(c => c.type == "category").size
-                var textCount = server.channels.cache.filter(c => c.type == "text").size
-                var voiceCount = server.channels.cache.filter(c => c.type == "voice").size
-                var embed = new Discord.MessageEmbed()
-                    .setTitle(server.name)
-                    .setDescription("Tutte le info su questo server")
-                    .setThumbnail(server.iconURL())
-                    .addField("Owner", server.owner.user.username, true)
-                    .addField("Server id", server.id, true)
-                    .addField("Server region", server.region, true)
-                    .addField("Members", "Total: " + server.memberCount + " - Users: " + utentiCount + " - Bots: " + botCount, false)
-                    .addField("Channels", "Category: " + categoryCount + " - Text: " + textCount + " - Voice: " + voiceCount, false)
-                    .addField("Server created", server.createdAt.toDateString(), true)
-                    .addField("Boost level", "Level " + server.premiumTier + " (Boost: " + server.premiumSubscriptionCount + ")", true)
-                message.channel.send(embed)
-            }
      }
-})
-
+    })
+    client.on("messageCreate", message => {
+        if (message.content == "l/serverinfo") {
+            var server = message.member.guild;
+            var botCount = server.members.cache.filter(member => member.user.bot).size;
+            var utentiCount = server.memberCount - botCount;
+            var categoryCount = server.channels.cache.filter(c => c.type == "GUILD_CATEGORY").size
+            var textCount = server.channels.cache.filter(c => c.type == "GUILD_TEXT").size
+            var voiceCount = server.channels.cache.filter(c => c.type == "GUILD_VOICE").size
+            const owner = server.members.cache.find(member => member.id === message.guild.ownerId);
+            var embed = new Discord.MessageEmbed()
+                .setTitle(server.name)
+                .setDescription("Tutte le info su questo server")
+                .setThumbnail(server.iconURL())
+                .addField("Owner", owner.user.username, true)
+                .addField("Server id", server.id.toString(), true)
+                .addField("Members", "Total: " + server.memberCount.toString() + " - Users: " + utentiCount.toString() + " - Bots: " + botCount.toString(), false)
+                .addField("Channels", "Category: " + categoryCount.toString() + " - Text: " + textCount.toString() + " - Voice: " + voiceCount.toString(), false)
+                .addField("Server created", server.createdAt.toDateString(), true)
+                .addField("Boost level", "Level " + server.premiumTier + " (Boost: " + server.premiumSubscriptionCount + ")", true)
+            message.channel.send({embeds: [embed]})
+        }
+    })
