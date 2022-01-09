@@ -14,7 +14,7 @@ client.on("ready", () => {
         var embed = new Discord.MessageEmbed()
         .setTitle("I Commandi Del Bot")
         .setDescription("Per ora questi sono i miei commandi")
-        .addField("I commandi", "l/youtube", false)
+        .addField("I commandi", "l/youtube", "l/serverinfo", false)
         message.channel.send({ embeds: [embed] })
     }
     
