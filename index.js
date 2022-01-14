@@ -22,6 +22,10 @@ client.on("ready", () => {
     if (message.content == "l/youtube") {
          message.channel.send ("Iscrivetevi al canale di Nico che porta contenuti su questo server https://www.youtube.com/channel/UCXc_L2UunACJSY5PqdAbWGg")
      }
+
+     if(message.content == "l/ue") {
+         message.channel.send ("Video figo https://www.youtube.com/watch?v=cLjXsVkPUPc")
+     }
     })
 
 client.on("messageCreate", message => {
