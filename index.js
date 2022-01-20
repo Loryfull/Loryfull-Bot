@@ -98,6 +98,7 @@ client.on("messageCreate", message => {
         message.channel.send({embeds: [embed]})
     }
 })
+// User-Info
 client.on("messageCreate", message => {
     if (message.content.startsWith("l/UserInfo")) {
         if (message.content == "l/UserInfo") {
@@ -131,5 +132,75 @@ client.on("messageCreate", message => {
             .addField("Permissions", elencoPermessi, false)
             .addField("Roles", utente.roles.cache.map(ruolo => ruolo.name).join("\r"), false)
         message.channel.send({ embeds: [embed] })
+    }
+})
+// Utenti-Ban
+client.on("messageCreate", message => {
+    if (message.content.startsWith("!ban")) {
+        var utente = message.mentions.members.first();
+        if (!message.member.permissions.has('BAN_MEMBERS')) {
+            return message.channel.send('Non hai il permesso');
+        }
+        if (!utente) {
+            return message.channel.send('Non hai menzionato nessun utente');
+        }
+        if (!utente.bannable) {
+            return message.channel.send('Io non ho il permesso');
+        }
+        utente.ban()
+            .then(() => {
+                var embed = new Discord.MessageEmbed()
+                    .setTitle(`${utente.user.username} bannato`)
+                    .setDescription(`Utente bannato da ${message.author.toString()}`)
+
+                message.channel.send({ embeds: [embed] })
+            })
+    }
+})
+client.on("messageCreate", async message => {
+    if (message.content.startsWith("!unban")) {
+        if (!message.member.permissions.has('BAN_MEMBERS')) {
+            return message.channel.send('Non hai il permesso');
+        }
+
+        var args = message.content.split(/\s+/);
+        var idUtente = args[1]
+
+        if (!idUtente) {
+            return message.channel.send("Non hai scritto l'id di nessun utente");
+        }
+
+        message.guild.members.unban(idUtente)
+            .then(() => {
+                var embed = new Discord.MessageEmbed()
+                    .setTitle("Utente sbannato")
+                    .setDescription("Questo utente è stato sbannato")
+
+                message.channel.send({ embeds: [embed] })
+            })
+            .catch(() => { message.channel.send("Utente non valido o non bannato") })
+    }
+})
+// Utenti-Kick
+client.on("messageCreate", message => {
+    if (message.content.startsWith("!kick")) {
+        var utente = message.mentions.members.first();
+        if (!message.member.permissions.has('KICK_MEMBERS')) {
+            return message.channel.send('Non hai il permesso');
+        }
+        if (!utente) {
+            return message.channel.send('Non hai menzionato nessun utente');
+        }
+        if (!utente.kickable) {
+            return message.channel.send('Io non ho il permesso');
+        }
+        utente.kick()
+            .then(() => {
+                var embed = new Discord.MessageEmbed()
+                    .setTitle(`${utente.user.username} kickato`)
+                    .setDescription(`Utente kickato da ${message.author.toString()}`)
+
+                message.channel.send({ embeds: [embed] })
+            })
     }
 })
