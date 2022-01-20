@@ -18,6 +18,8 @@ client.on("ready", () => {
         .addField("Commando 2", "l/ServerInfo", false)
         .addField("Commando 3", "l/UserInfo")
         .addField("Commando 4", "l/Say", false)
+        .addField("Commando 5", "l/Ban and l/Unban", false)
+        .addField("Commando 6", "l/kick", false)
         message.channel.send({ embeds: [embed] })
     }
     
@@ -136,7 +138,7 @@ client.on("messageCreate", message => {
 })
 // Utenti-Ban
 client.on("messageCreate", message => {
-    if (message.content.startsWith("!ban")) {
+    if (message.content.startsWith("l/Ban")) {
         var utente = message.mentions.members.first();
         if (!message.member.permissions.has('BAN_MEMBERS')) {
             return message.channel.send('Non hai il permesso');
@@ -158,7 +160,7 @@ client.on("messageCreate", message => {
     }
 })
 client.on("messageCreate", async message => {
-    if (message.content.startsWith("!unban")) {
+    if (message.content.startsWith("l/Unban")) {
         if (!message.member.permissions.has('BAN_MEMBERS')) {
             return message.channel.send('Non hai il permesso');
         }
@@ -183,7 +185,7 @@ client.on("messageCreate", async message => {
 })
 // Utenti-Kick
 client.on("messageCreate", message => {
-    if (message.content.startsWith("!kick")) {
+    if (message.content.startsWith("l/Kick")) {
         var utente = message.mentions.members.first();
         if (!message.member.permissions.has('KICK_MEMBERS')) {
             return message.channel.send('Non hai il permesso');
