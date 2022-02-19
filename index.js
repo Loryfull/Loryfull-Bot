@@ -31,10 +31,10 @@ client.on("ready", () => {
          message.channel.send ("Video figo https://www.youtube.com/watch?v=cLjXsVkPUPc")
      }
     })
-
+//Sistema-AntiBestemmie
 client.on("messageCreate", message => {
     if(message.member.roles.cache.has(885834646921826334)) return
-     var bestemmie =["porco dio", "dio cane", "porca madonna", "Porco dio", "Dio cane", "Porca madonnna"]
+     var bestemmie =["porco dio", "dio cane", "porca madonna", "Porco dio", "Dio cane", "Porca madonnna", "di0 can3"]
      var trovata = false
      var testo = message.content;
 
@@ -54,6 +54,7 @@ client.on("messageCreate", message => {
             message.channel.send ({ embeds: [embed] })
      }
     })
+//ServerInfo
 client.on("messageCreate", message => {
     if (message.content == "l/ServerInfo") {
         var server = message.member.guild;
@@ -76,6 +77,7 @@ client.on("messageCreate", message => {
         message.channel.send({embeds: [embed]})
     }
 })
+//Say
 client.on("messageCreate", message => {
     if (message.content.startsWith("l/Say")) {
         var args = message.content.split(/\s+/);
@@ -88,7 +90,6 @@ client.on("messageCreate", message => {
             return message.channel.send("Non taggare everyone o here");
         }
         message.delete()
-        //Embed
         var embed = new Discord.MessageEmbed()
             .setTitle("Say")
             .setDescription(testo)
@@ -203,7 +204,7 @@ client.on("messageCreate", message => {
     }
 })
 client.on("messageCreate", message => {
-    if (message.content == "!comando") {
+    if (message.content == "l/Ticket") {
         var button1 = new Discord.MessageButton()
             .setLabel("Apri ticket")
             .setCustomId("apriTicket")
@@ -226,7 +227,7 @@ client.on("interactionCreate", interaction => {
         interaction.guild.channels.create(interaction.user.username, {
             type: "text",
             topic: `User ID: ${interaction.user.id}`,
-            parent: "idCategoria", //Settare la categoria,
+            parent: "906438529792503859", 
             permissionOverwrites: [
                 {
                     id: interaction.guild.id,
@@ -236,8 +237,8 @@ client.on("interactionCreate", interaction => {
                     id: interaction.user.id,
                     allow: ["VIEW_CHANNEL"]
                 },
-                { //Aggiungere altri "blocchi" se si vogliono dare permessi anche a ruoli o utenti
-                    id: "idRuolo",
+                { 
+                    id: "885833893025054730",
                     allow: ["VIEW_CHANNEL"]
                 }
             ]
@@ -248,10 +249,10 @@ client.on("interactionCreate", interaction => {
 })
 
 client.on("messageCreate", message => {
-    if (message.content == "!close") {
+    if (message.content == "l/close") {
         var topic = message.channel.topic;
         if (!topic) {
-            message.channel.send("Non puoi utilizzare questo comando qui");
+            message.channel.send("Il coomando seguente non può essere applicato");
             return
         }
         if (topic.startsWith("User ID:")) {
@@ -261,10 +262,10 @@ client.on("messageCreate", message => {
             }
         }
         else {
-            message.channel.send("Non puoi utilizzare questo comando qui")
+            message.channel.send("Il commando non può essere applicato qui")
         }
     }
-    if (message.content.startsWith("!add")) {
+    if (message.content.startsWith("l/add")) {
         var topic = message.channel.topic;
         if (!topic) {
             message.channel.send("Non puoi utilizzare questo comando qui");
@@ -280,20 +281,20 @@ client.on("messageCreate", message => {
                 }
                 var haIlPermesso = message.channel.permissionsFor(utente).has("VIEW_CHANNEL", true)
                 if (haIlPermesso) {
-                    message.channel.send("Questo utente ha gia accesso al ticket")
+                    message.channel.send("L'utente menzionato è gia presente nel ticket")
                     return
                 }
                 message.channel.permissionOverwrites.edit(utente, {
                     VIEW_CHANNEL: true
                 })
-                message.channel.send(`${utente.toString()} è stato aggiunto al ticket`)
+                message.channel.send(`${utente.toString()} è stato corretamente invitato`)
             }
         }
         else {
-            message.channel.send("Non puoi utilizzare questo comando qui")
+            message.channel.send("Non posso fare questo in questa chat")
         }
     }
-    if (message.content.startsWith("!remove")) {
+    if (message.content.startsWith("l/remove")) {
         var topic = message.channel.topic;
         if (!topic) {
             message.channel.send("Non puoi utilizzare questo comando qui");
@@ -309,17 +310,17 @@ client.on("messageCreate", message => {
                 }
                 var haIlPermesso = message.channel.permissionsFor(utente).has("VIEW_CHANNEL", true)
                 if (!haIlPermesso) {
-                    message.channel.send("Questo utente non ha gia accesso al ticket")
+                    message.channel.send("L'utente taggato non è dentro il Ticket, hai le visioni?")
                     return
                 }
                 if (utente.permissions.has("MANAGE_CHANNELS")) {
-                    message.channel.send("Non puoi rimuovere questo utente")
+                    message.channel.send("L'utente taggato è più potente di te, stupido plebeo")
                     return
                 }
                 message.channel.permissionOverwrites.edit(utente, {
                     VIEW_CHANNEL: false
                 })
-                message.channel.send(`${utente.toString()} è stato rimosso al ticket`)
+                message.channel.send(`${utente.toString()} è stato rimosso corretamente dal Ticket`)
             }
         }
         else {
