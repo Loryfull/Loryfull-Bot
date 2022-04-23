@@ -156,6 +156,7 @@ client.on("messageCreate", message => {
             })
     }
 })
+//Unban
 client.on("messageCreate", async message => {
     if (message.content.startsWith("l/Unban")) {
         if (!message.member.permissions.has('BAN_MEMBERS')) {
@@ -328,25 +329,12 @@ client.on("messageCreate", message => {
         }
     }
 })
-const fs = require("fs");
-
-client.commands = new Discord.Collection();
-
-const commandsFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"))
-for(const file of commandsFiles){
-    var command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
-}
-
-client.on("message", message => {
-    const prefix = "l/";
-
-    if(!message.content.startsWith(prefix) || message.author.bot) return
-
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
-
-    if(!client.commands.has(command)) return
-
-    client.commands.get(command).execute(message, args);
+//warn
+client.on("message", message =>{
+    if(message.content.startsWith("l/warn")) {
+    var utente = message.mentions.members.first();
+    if(!message.member.permissions.has('KICK_MEMBERS')) {
+        return 
+    }  
+    } 
 })
